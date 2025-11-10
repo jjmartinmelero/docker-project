@@ -19,3 +19,6 @@ services:
         environment:
             - PGADMIN_DEFAULT_PASSWORD=123456
             - PGADMIN_DEFAULT_EMAIL=superman@google.com
+
+
+# sudo chown -R 5050:5050 ${DATA_PATH_HOST}/pgadmin
