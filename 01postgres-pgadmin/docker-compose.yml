@@ -1,7 +1,7 @@
 version: "3"
 services:
     db:
-        container_name: postgres_databa
+        container_name: postgres_database
         image: postgres:15.1
         volumes:
             - postgres-db:/var/lib/postgresql/data
