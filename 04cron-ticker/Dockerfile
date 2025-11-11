@@ -12,6 +12,12 @@ COPY . .
 
 RUN npm run test
 
+# delete files
+RUN rm -rf tests && rm -rf node_modules
+
+# only production
+RUN npm install --prod
+
 # run command
 CMD ["node", "app.js"]
 
