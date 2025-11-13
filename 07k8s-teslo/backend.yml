@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend
@@ -21,7 +21,7 @@ spec:
         - containerPort: 3000
         env:
         - name: APP_VERSION
-          value: "1.0.0"
+          value: "1.1.0"
         - name: PORT
           value: "3000"
         - name: STAGE
@@ -36,27 +36,32 @@ spec:
             configMapKeyRef:
               name: postgres-config
               key: DB_HOST
+              
         - name: DB_PORT
           valueFrom:
             configMapKeyRef:
               name: postgres-config
               key: DB_PORT
-        - name: DB_USER_NAME
+
+        - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
               name: postgres-secrets
               key: DB_USER
+
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: postgres-secrets
               key: DB_PASSWORD
+
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
               name: backend-secrets
               key: JWT_SECRET
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -71,3 +76,4 @@ spec:
       port: 3000 # cualquier puerto
       targetPort: 3000
       nodePort: 30300
+      
